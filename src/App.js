@@ -32,12 +32,18 @@ function App() {
 
   }
 
+  function SortByPopularity(){
+    setContacts([...contactsDisplayed].sort((a,b)=>{
+      return b.popularity - a.popularity
+     }));
+  }
+
 
   return (
     <div className="App">
     <button className="btn" onClick={AddRandomContact}>Add random contact</button>
     <button className="btn" onClick={SortByName}>Sort by name</button>
-    {/* <button className="btn" onClick={SortByPopularity}>Sort by popularity</button> */}
+    <button className="btn" onClick={SortByPopularity}>Sort by popularity</button>
       <div className="contact-list">
         <table>
           <thead>
