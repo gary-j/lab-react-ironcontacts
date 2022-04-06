@@ -2,11 +2,6 @@ import "./App.css";
 import contacts from "./contacts.json";
 import { useState } from 'react';
 
-
-
-
-
-
 function App() {
   
   const initialContacts = contacts.slice(0, 5);
@@ -14,10 +9,9 @@ function App() {
 
   function AddRandomContact(){
 
-
     const randomIndex = Math.floor(Math.random()* contacts.length);
     const randomContact = contacts[randomIndex];
-    
+
     if(contactsDisplayed.includes(randomContact)){
       AddRandomContact()
     }else{
@@ -27,9 +21,23 @@ function App() {
     }
   }
 
+  function SortByName(){
+  
+    console.log('appel ok')
+
+    // sort travaille directement sur le tableau, donc il faut créer une copie pour ne pas casser le State
+    setContacts([...contactsDisplayed].sort((a,b)=>{
+     return a.name.localeCompare(b.name)
+    }));
+
+  }
+
+
   return (
     <div className="App">
     <button className="btn" onClick={AddRandomContact}>Add random contact</button>
+    <button className="btn" onClick={SortByName}>Sort by name</button>
+    {/* <button className="btn" onClick={SortByPopularity}>Sort by popularity</button> */}
       <div className="contact-list">
         <table>
           <thead>
