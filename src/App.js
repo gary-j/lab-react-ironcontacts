@@ -38,6 +38,14 @@ function App() {
      }));
   }
 
+  function RemoveContact(id){
+    
+    console.log('appel ok, id : ', id)
+    setContacts([...contactsDisplayed].filter(contact=>{
+      return contact.id !== id
+    }))
+  }
+
 
   return (
     <div className="App">
@@ -53,6 +61,7 @@ function App() {
               <th>Popularity</th>
               <th>Won Oscar</th>
               <th>Won Emmy</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -63,6 +72,7 @@ function App() {
                 <td>{contact.popularity}</td>
                 <td>{contact.wonOscar && <p>🏆 </p> }</td>
                 <td>{contact.wonEmmy && <p>🏆 </p> }</td>
+                <td><button className='btn' id={contact.id} onClick={ ()=>RemoveContact(contact.id)}>Delete</button></td>
               </tr>
             ))}
 
